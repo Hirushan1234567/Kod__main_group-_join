@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kingdom of Devil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+<div id="custom-loader">
+    <div class="spinner"></div>
+    <h3 id="loader-text" style="font-size: 16px; font-weight: 600;">Loading...</h3>
+</div>
+
+<div class="container" id="main-container">
+    <div class="header-controls">
+        <div class="left-controls">
+            <button class="menu-btn" onclick="toggleMenu()">⚙️ System</button>
+            <button class="menu-btn" onclick="toggleTheme()">🌓 Mode</button>
+            <div id="menu-dropdown" class="dropdown-menu">
+                <button id="admin-menu-btn" onclick="openAdminPanel()">Admin Panel</button>
+            </div>
+        </div>
+        <div class="right-controls">
+            <select id="lang-select" onchange="changeLanguage()" style="width: auto; padding: 6px 10px;">
+                <option value="en">English</option>
+                <option value="si" selected>Sinhala</option>
+                <option value="ta">Tamil</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="login-section" class="section active-section">
+        <h2 id="login-title">System Login</h2>
+        <div class="form-group">
+            <label id="lbl-whatsapp">WhatsApp Number</label>
+            <input type="text" id="whatsapp-input" placeholder="0771234567">
+        </div>
+        <div class="form-group">
+            <label id="lbl-gmail">Gmail Address</label>
+            <input type="email" id="gmail-input" placeholder="example@gmail.com">
+        </div>
+        <div class="form-group">
+            <label id="lbl-username">Username</label>
+            <input type="text" id="username-input" placeholder="Enter username">
+        </div>
+        <button class="main-btn" id="btn-login" onclick="loginUser()">Authenticate</button>
+    </div>
+
+    <div id="dashboard-section" class="section">
+        <h2 style="font-size: 18px;"><span id="welcome-txt">Access Granted,</span> <span id="user-display" style="color: var(--btn-red);"></span></h2>
+        <a id="btn-interview-group" class="group-btn" onclick="handleInterviewGroupClick()">💬 Kod Interview Group</a>
+        <a id="btn-main-group" class="group-btn locked" onclick="handleMainGroupClick()">🔒 Main KOD group  (Locked)</a>
+    </div>
+
+    <div id="admin-section" class="section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 id="admin-title" style="margin: 0; font-size: 18px;">Admin Panel</h2>
+            <button class="menu-btn" id="btn-back" onclick="backToDashboard()">Back</button>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <input type="text" id="search-user-input" placeholder="Search..." oninput="filterUserList()">
+        </div>
+        <p id="lbl-manage-users" style="font-size: 12px; color: var(--text-muted);">Registered Database:</p>
+        <div id="user-list-container" style="max-height: 220px; overflow-y: auto;"></div>
+    </div>
+</div>
+
+<div id="user-modal" class="modal">
+    <div class="modal-content">
+        <h3 id="modal-user-name" style="margin-top:0; font-size: 16px;"></h3>
+        <p id="lbl-choose-action" style="font-size:12px; color: var(--text-muted);">Select Execution:</p>
+        <div class="action-btn-grid">
+            <button class="btn-danger" id="btn-action-block" onclick="toggleBlockUser()">Block</button>
+            <button class="btn-success" id="btn-action-admin" onclick="toggleAdminUser()">Admin</button>
+            <button class="btn-success" id="btn-action-permission" onclick="togglePermission()">Permission</button>
+            <button class="btn-danger" id="btn-action-delete" onclick="deleteUser()" style="background-color: #b91c1c;">Delete</button>
+        </div>
+        <div style="margin-top: 15px;">
+            <button class="btn-secondary" id="btn-action-close" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
